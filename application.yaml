@@ -4,59 +4,19 @@ metadata:
   name: mlflow
   namespace: infra-tools
   annotations:
-    docs.mlopscourse.dev/link: "https://charts.bitnami.com/bitnami"
+    docs.mlopscourse.dev/link: "https://github.com/Oleksandr-Ho/goit-argo"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    chart: mlflow
-    targetRevision: 2.4.6
+    repoURL: https://github.com/Oleksandr-Ho/goit-argo.git
+    targetRevision: main
+    path: charts/mlflow
     helm:
       releaseName: mlflow
-      values: |
-        service:
-          type: ClusterIP
-          port: 5000
-        mlflow:
-          defaultArtifactRoot: /bitnami/mlflow
-          extraEnvVars:
-            - name: MLFLOW_SERVER_DEFAULT_ARTIFACT_ROOT
-              value: /bitnami/mlflow
-            - name: MLFLOW_SERVER_PORT
-              value: "5000"
-          resources:
-            requests:
-              cpu: 100m
-              memory: 256Mi
-            limits:
-              cpu: 250m
-              memory: 512Mi
-        backendStore:
-          database:
-            enabled: true
-            postgresql:
-              primary:
-                resources:
-                  requests:
-                    cpu: 100m
-                    memory: 256Mi
-                  limits:
-                    cpu: 250m
-                    memory: 512Mi
-        artifactStore:
-          enabled: true
-          minio:
-            resources:
-              requests:
-                cpu: 100m
-                memory: 256Mi
-              limits:
-                cpu: 250m
-                memory: 512Mi
-        ingress:
-          enabled: false
+      valueFiles:
+        - ../values/mlflow-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow
