@@ -42,17 +42,17 @@ spec:
             - -c
             - |
               pip install --no-cache-dir mlflow==2.9.2 && \
-              mlflow server --backend-store-uri sqlite:////mlflow/mlflow.db \
-                --default-artifact-root /mlflow/artifacts --host 0.0.0.0 --port 5000
+              mlflow server --backend-store-uri sqlite:////bitnami/mlflow/mlruns.db \
+                --default-artifact-root /bitnami/mlflow/mlartifacts --host 0.0.0.0 --port 5000
         run:
           enabled: false
         mlflow:
-          defaultArtifactRoot: /mlflow/artifacts
+          defaultArtifactRoot: /bitnami/mlflow/mlartifacts
           extraEnvVars:
             - name: MLFLOW_ARTIFACT_ROOT
-              value: /mlflow/artifacts
+              value: /bitnami/mlflow/mlartifacts
             - name: MLFLOW_BACKEND_STORE_URI
-              value: sqlite:////mlflow/mlflow.db
+              value: sqlite:////bitnami/mlflow/mlruns.db
           resources:
             requests:
               cpu: 100m
