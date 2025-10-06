@@ -20,7 +20,9 @@ spec:
           type: ClusterIP
           port: 5000
         image:
-          tag: 3.3.2-debian-12-r0
+          registry: docker.io
+          repository: python
+          tag: "3.10-slim"
         minio:
           enabled: false
         postgresql:
@@ -30,15 +32,23 @@ spec:
             enabled: false
           persistence:
             enabled: false
+          command:
+            - /bin/sh
+          args:
+            - -c
+            - |
+              pip install mlflow==2.9.2 && \
+              mlflow server --backend-store-uri sqlite:////mlflow/mlflow.db \
+                --default-artifact-root /mlflow/artifacts --host 0.0.0.0 --port 5000
         run:
           enabled: false
         mlflow:
-          defaultArtifactRoot: /bitnami/mlflow
+          defaultArtifactRoot: /mlflow/artifacts
           extraEnvVars:
-            - name: MLFLOW_SERVER_DEFAULT_ARTIFACT_ROOT
-              value: /bitnami/mlflow
-            - name: MLFLOW_SERVER_PORT
-              value: "5000"
+            - name: MLFLOW_ARTIFACT_ROOT
+              value: /mlflow/artifacts
+            - name: MLFLOW_BACKEND_STORE_URI
+              value: sqlite:////mlflow/mlflow.db
           resources:
             requests:
               cpu: 100m
