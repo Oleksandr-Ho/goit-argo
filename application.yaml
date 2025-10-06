@@ -32,12 +32,16 @@ spec:
             enabled: false
           persistence:
             enabled: false
+          podSecurityContext:
+            enabled: false
+          containerSecurityContext:
+            enabled: false
           command:
             - /bin/sh
           args:
             - -c
             - |
-              pip install mlflow==2.9.2 && \
+              pip install --no-cache-dir mlflow==2.9.2 && \
               mlflow server --backend-store-uri sqlite:////mlflow/mlflow.db \
                 --default-artifact-root /mlflow/artifacts --host 0.0.0.0 --port 5000
         run:
