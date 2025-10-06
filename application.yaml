@@ -20,7 +20,8 @@ spec:
           type: ClusterIP
           port: 5000
         image:
-          tag: 2.7.1-debian-11-r0
+          repository: mlflow/mlflow
+          tag: 2.9.2
         minio:
           enabled: false
         postgresql:
@@ -33,10 +34,10 @@ spec:
         run:
           enabled: false
         mlflow:
-          defaultArtifactRoot: /bitnami/mlflow
+          defaultArtifactRoot: /mlruns
           extraEnvVars:
             - name: MLFLOW_SERVER_DEFAULT_ARTIFACT_ROOT
-              value: /bitnami/mlflow
+              value: /mlruns
             - name: MLFLOW_SERVER_PORT
               value: "5000"
           resources:
