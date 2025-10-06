@@ -24,18 +24,9 @@ spec:
             enabled: false
         backendStore:
           database:
-            enabled: true
-            postgresql:
-              primary:
-                persistence:
-                  enabled: false
-              volumePermissions:
-                enabled: false
+            enabled: false
         artifactStore:
-          enabled: true
-          minio:
-            persistence:
-              enabled: false
+          enabled: false
         run:
           enabled: false
         mlflow:
