@@ -12,13 +12,15 @@ spec:
   source:
     repoURL: https://github.com/Oleksandr-Ho/goit-argo.git
     path: charts/mlflow
-    targetRevision: 36f81c36bb14df8341b6e260a59ed0a2be492e5d
+    targetRevision: main
     helm:
       releaseName: mlflow
       values: |
         service:
           type: ClusterIP
           port: 5000
+        image:
+          tag: 2.7.1-debian-11-r0
         minio:
           enabled: false
         postgresql:
