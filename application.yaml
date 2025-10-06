@@ -36,6 +36,10 @@ spec:
             enabled: false
           containerSecurityContext:
             enabled: false
+          service:
+            type: ClusterIP
+            ports:
+              http: 5000
           command:
             - /bin/sh
           args:
