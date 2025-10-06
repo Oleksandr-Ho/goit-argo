@@ -10,12 +10,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: oci://registry-1.docker.io/bitnamicharts
+    repoURL: oci://registry-1.docker.io/bitnamicharts/mlflow
     chart: mlflow
     targetRevision: 2.4.6
     helm:
       releaseName: mlflow
-      oci: true
       values: |
         service:
           type: ClusterIP
