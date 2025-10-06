@@ -19,6 +19,25 @@ spec:
         service:
           type: ClusterIP
           port: 5000
+        tracking:
+          persistence:
+            enabled: false
+        backendStore:
+          database:
+            enabled: true
+            postgresql:
+              primary:
+                persistence:
+                  enabled: false
+              volumePermissions:
+                enabled: false
+        artifactStore:
+          enabled: true
+          minio:
+            persistence:
+              enabled: false
+        run:
+          enabled: false
         mlflow:
           defaultArtifactRoot: /bitnami/mlflow
           extraEnvVars:
@@ -33,30 +52,6 @@ spec:
             limits:
               cpu: 250m
               memory: 512Mi
-        backendStore:
-          database:
-            enabled: true
-            postgresql:
-              primary:
-                resources:
-                  requests:
-                    cpu: 100m
-                    memory: 256Mi
-                  limits:
-                    cpu: 250m
-                    memory: 512Mi
-        artifactStore:
-          enabled: true
-          minio:
-            resources:
-              requests:
-                cpu: 100m
-                memory: 256Mi
-              limits:
-                cpu: 250m
-                memory: 512Mi
-        ingress:
-          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow
