@@ -24,6 +24,8 @@ spec:
         postgresql:
           enabled: false
         tracking:
+          auth:
+            enabled: false
           persistence:
             enabled: false
         run:
