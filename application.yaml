@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/Oleksandr-Ho/goit-argo.git
     path: charts/mlflow
-    targetRevision: main
+    targetRevision: 61a8a84f4b513a513c47311a5b0d7f40a4bc01e1
     helm:
       releaseName: mlflow
       values: |
