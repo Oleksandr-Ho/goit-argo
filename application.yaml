@@ -19,14 +19,13 @@ spec:
         service:
           type: ClusterIP
           port: 5000
+        minio:
+          enabled: false
+        postgresql:
+          enabled: false
         tracking:
           persistence:
             enabled: false
-        backendStore:
-          database:
-            enabled: false
-        artifactStore:
-          enabled: false
         run:
           enabled: false
         mlflow:
