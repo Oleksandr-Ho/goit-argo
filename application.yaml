@@ -4,19 +4,19 @@ metadata:
   name: mlflow
   namespace: infra-tools
   annotations:
-    docs.mlopscourse.dev/link: "https://github.com/Oleksandr-Ho/goit-argo"
+    docs.mlopscourse.dev/link: "https://charts.bitnami.com/bitnami"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/Oleksandr-Ho/goit-argo.git
-    targetRevision: main
-    path: charts/mlflow
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: mlflow
+    targetRevision: 2.4.6
     helm:
       releaseName: mlflow
       valueFiles:
-        - ../values/mlflow-values.yaml
+        - values/mlflow-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow

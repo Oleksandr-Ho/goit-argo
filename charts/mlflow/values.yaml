@@ -1,4 +1,0 @@
-# Базові налаштування, які потім перевизначаємо через файл values/mlflow-values.yaml
-service:
-  type: ClusterIP
-  port: 5000
